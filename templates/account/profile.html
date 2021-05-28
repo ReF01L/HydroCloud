@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %} - Profile{% endblock %}
+{% block header %}
+    <div class="header_auth">
+        <a class="header_auth-btn" href="{% url 'account:user_login' %}">Log out</a>
+    </div>
+{% endblock %}
+{% block content %}
+    <h1>Welcome {{ user.first_name }}!</h1>
+    <a href="{% url 'account:command' 'ls -la' %}">SSH CONNECT</a>
+    <div class="content">
+    {% for foo in content %}
+        {{ foo }}
+        <br>
+    {% endfor %}
+    </div>
+{% endblock %}

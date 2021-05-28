@@ -1,0 +1,80 @@
+.rg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 90px);
+}
+.rg .error {
+  color: red;
+  opacity: 0.7;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+.rg_form {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #297C6E;
+  border-radius: 15px;
+}
+.rg_form p {
+  width: 100%;
+}
+.rg_form-field {
+  width: 100%;
+  font-size: 24px;
+  color: #57A094;
+  background: transparent;
+  border: none;
+  outline: none;
+  text-align: center;
+  height: 60px;
+  border-bottom: 1px solid #297C6E;
+}
+.rg_form-field-error {
+  width: 100%;
+  font-size: 24px;
+  color: #57A094;
+  background: transparent;
+  border: none;
+  outline: none;
+  text-align: center;
+  height: 60px;
+  border-bottom: 1px solid #297C6E;
+}
+.rg_form-field-error::placeholder {
+  color: red;
+}
+.rg_form-field::placeholder {
+  color: #57A094;
+  opacity: 0.7;
+}
+.rg_form-field:focus {
+  background: #57A094;
+  color: black;
+}
+.rg_form-btn {
+  font-size: 36px;
+  color: #FFFFFF;
+  background: #57A094;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 5px 1%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.rg_form-btn:hover {
+  cursor: pointer;
+}
+.rg_form .errorlist {
+  color: red;
+  padding-top: 5px;
+  list-style-type: none;
+  transform: translateY(100%);
+}
+
+/*# sourceMappingURL=register.css.map */

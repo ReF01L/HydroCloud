@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href="{% static "img/favicon.ico" %}">
+    <title>HydroCloud{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extrahead %}{% endblock %}
+</head>
+<body>
+<header class="header">
+    <div class="header_logo">
+        <img src="{% static 'img/logo.png' %}" alt="logo" class="header_logo-img"/>
+    </div>
+    {% block header %}{% endblock %}
+</header>
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/account/register.css' %}">
+    <script src="{% static 'js/account/register.js' %}"></script>
+{% endblock %}
+
+{% block title %} - Sign up{% endblock %}
+{% block header %}
+    <div class="header_auth">
+        <a class="header_auth-btn" href="{% url 'account:user_login' %}">Sign In</a>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="rg">
+        {% if error %}
+            <h1 class="error">This user already exists</h1>
+        {% endif %}
+        <form action="." method="post" class="rg_form">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Sign up" class="rg_form-btn" onclick="try_register()">
+        </form>
+    </div>
+{% endblock %}

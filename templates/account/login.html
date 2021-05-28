@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/account/login.css' %}">
+{% endblock %}
+
+{% block title %} - Sign in{% endblock %}
+{% block header %}
+    <div class="header_auth">
+        <a class="header_auth-btn" href="{% url 'account:register' %}">Sign Up</a>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="login">
+    {% if error %}
+        <h1 class="error">You entered incorrect data</h1>
+    {% endif %}
+        <form action="." method="post" class="login_form">
+            {{ form.as_p }}
+            <label class="login-checkbox">
+                Remember me
+                <input type="checkbox" checked name="remember">
+            </label>
+            {% csrf_token %}
+            <input type="submit" value="Sign in" class="login_form-btn">
+        </form>
+    </div>
+{% endblock %}
