@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/history/admin_history.css' %}">
+{% endblock %}
+{% block title %} - History{% endblock %}
+{% block header %}
+    <div class="header_auth">
+        <a href="{% url 'account:profile' %}" class="header_auth-btn">Profile</a>
+        <a href="{% url 'account:user_login' %}" class="header_auth-btn">Log out</a>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="history">
+        <div class="title">History</div>
+        <div class="cards">
+            {# {% for history in histories %}#}
+            <div class="card">
+                <div class="card_title">
+                    <div class="card_title-method">Method</div>
+                    <div class="card_title-user">{{ user.username }}</div>
+                </div>
+                {# <div class="card_alg_method">{{ history.method }}</div>#}
+                <div class="card_body">
+                    {# <div class="card_alg_data">{{ history.params }}}}</div>#}
+                    <div class="card_body_data">Param</div>
+                    <div class="card_body_data">Param</div>
+                    <div class="card_body_data">Param</div>
+                    <div class="card_body_data">Param</div>
+                </div>
+                <div class="card_status">Status:</div>
+                {# <div class="card_status">{{ history.status }}</div>#}
+            </div>
+            {# {% endfor %}#}
+        </div>
+    </div>
+{% endblock %}

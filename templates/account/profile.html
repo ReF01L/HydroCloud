@@ -1,18 +1,52 @@
 {% extends "base.html" %}
-
+{% load static %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/account/profile.css' %}">
+{% endblock %}
 {% block title %} - Profile{% endblock %}
 {% block header %}
     <div class="header_auth">
-        <a class="header_auth-btn" href="{% url 'account:user_login' %}">Log out</a>
+        <a class="header_auth-btn" href="{% url 'history:all_history' %}">All requests</a>
+        <a class="header_auth-btn" href="{% url 'account:logout' %}">Log out</a>
     </div>
 {% endblock %}
 {% block content %}
-    <h1>Welcome {{ user.first_name }}!</h1>
-    <a href="{% url 'account:command' 'ls -la' %}">SSH CONNECT</a>
-    <div class="content">
-    {% for foo in content %}
-        {{ foo }}
-        <br>
-    {% endfor %}
+    <div class="container">
+        <div class="hero">
+            <div class="image">
+                {% if user.avatar %}
+                    <img src="{{ user.avatar.url }}" alt="Profile image">
+                {% else %}
+                    <img src="{% static 'img/account/user.png' %}" alt="Profile image">
+                {% endif %}
+            </div>
+            <div class="fields">
+                <div class="field">
+                    <div class="field-key">username</div>
+                    <div class="field-value">{{ user.user.username }}</div>
+                </div>
+                <div class="field">
+                    <div class="field-key">email</div>
+                    <div class="field-value">{{ user.user.email }}</div>
+                </div>
+                <div class="field">
+                    <div class="field-key">name</div>
+                    <div class="field-value">{{ user.user.first_name }}</div>
+                </div>
+                <div class="field">
+                    <div class="field-key">last name</div>
+                    <div class="field-value">{{ user.user.last_name }}</div>
+                </div>
+                <div class="field">
+                    <div class="field-key">organisation</div>
+                    <div class="field-value">{{ user.organization }}</div>
+                </div>
+            </div>
+        </div>
+    <div class="info">
+{#        TODO: count a len of the added images#}
+        <div class="info-stat">0</div>
+        <a href="{% url 'history:history' %}" class="info-history">Show history</a>
+    </div>
     </div>
 {% endblock %}

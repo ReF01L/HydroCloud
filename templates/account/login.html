@@ -17,10 +17,6 @@
     {% endif %}
         <form action="." method="post" class="login_form">
             {{ form.as_p }}
-            <label class="login-checkbox">
-                Remember me
-                <input type="checkbox" checked name="remember">
-            </label>
             {% csrf_token %}
             <input type="submit" value="Sign in" class="login_form-btn">
         </form>

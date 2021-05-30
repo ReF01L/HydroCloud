@@ -1,20 +1,19 @@
-from typing import Tuple
+from typing import List
 
 import paramiko
-from django.conf import settings
+
+from HydroCloud import settings
 
 
 class SSH:
-    def __init__(self, request, login: str, password: str) -> None:
-        self.session = request.session
-        ssh = self.session.get(settings.SSH_SESSION_CLIENT)
-        if not ssh:
-            ssh = self.session[settings.SSH_SESSION_CLIENT] = {}
-        self.ssh = ssh
-        self.client = paramiko.SSHClient()
-        self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        self.client.connect('jupiter.febras.net', 2020, login, password)
-        self.ssh['client'] = self.client
+    def __new__(cls) -> 'SSH':
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(SSH, cls).__new__(cls)
+            cls.client = paramiko.SSHClient()
+            cls.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            cls.client.connect('jupiter.febras.net', 2020, settings.config['SSH']['LOGIN'], settings.config['SSH']['PASSWORD'])
+        return cls.instance
 
-    def command(self, command: str) -> None:
-        self.ssh['content'] = list(x.decode('utf-8') for x in self.client.exec_command(command)[1].read().splitlines())
+    @classmethod
+    def command(cls, command: str) -> List[str]:
+        return list(x.decode('utf-8') for x in cls.client.exec_command(command)[1].read().splitlines())

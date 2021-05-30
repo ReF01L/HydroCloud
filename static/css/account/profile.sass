@@ -1,0 +1,70 @@
+@import '../colors'
+
+.container
+  margin-top: 25px
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  & .hero
+    display: flex
+    justify-content: center
+    align-items: center
+    & .image
+      width: 30%
+      margin-right: 15px
+
+      & img
+        width: 100%
+        border-radius: 10px
+
+    & .fields
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      width: 30%
+      margin-left: 15px
+
+      & .field
+        display: flex
+        justify-content: space-between
+        align-items: center
+        border-bottom: 1px solid black
+        width: 100%
+        margin-top: 50px
+
+        &-key
+          text-transform: capitalize
+          font-size: 24px
+          font-weight: 600
+
+        &-value
+          text-transform: uppercase
+          font-size: 18px
+  & .info
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-top: 25px
+    width: 20%
+    height: 50px
+    &-stat
+      font-size: 24px
+
+    &-history
+      text-decoration: none
+      color: $dark
+      font-weight: 600
+      font-size: 32px
+      border: 2px dashed $light
+      text-align: center
+      padding: 10px 40px
+      -webkit-transition: 0.2s
+      -moz-transition: 0.2s
+      -ms-transition: 0.2s
+      -o-transition: 0.2s
+      transition: 0.2s
+      &:hover
+        background-color: $light
+        border: 2px dashed transparent

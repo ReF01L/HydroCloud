@@ -2,27 +2,27 @@ from django.contrib.auth import logout, authenticate, login
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET
-from .context_processor import ssh
 
-from HydroCloud import settings
 from account.forms import UserRegistrationForm, UserLoginForm
+from account.models import Profile
+from account.ssh import SSH
 
 
-def command(request, command):
-    if settings.SSH_SESSION_CLIENT not in request.session:
-        request.session[settings.SSH_SESSION_CLIENT] = {}
-    request.session[settings.SSH_SESSION_CLIENT]['client'].command(command)
-    return redirect('account:profile')
+def command(request):
+    user = Profile.objects.get(user=request.user)
+    return render(request, 'account/profile.html', {'content': SSH().command('ls -la'), 'user': user})
 
 
+@require_GET
 def profile(request):
-    if settings.SSH_SESSION_CLIENT not in request.session:
-        request.session[settings.SSH_SESSION_CLIENT] = {}
-    return render(request, 'account/profile.html', {'content': request.session.get(settings.SSH_SESSION_CLIENT).get('content')})
+    if not request.user.is_anonymous:
+        user = Profile.objects.get(user=request.user)
+        return render(request, 'account/profile.html', {'user': user})
+    return home(request, False)
 
 
 def home(request, error):
-    if 'user' in request.session:
+    if not request.user.is_anonymous:
         return profile(request)
     if request.path == '/account/login/':
         return render(request, 'account/login.html', {
@@ -34,6 +34,7 @@ def home(request, error):
             'form': UserRegistrationForm(),
             'error': error
         })
+    return redirect('account:user_login')
 
 
 def user_logout(request):
@@ -49,8 +50,6 @@ def user_login(request):
         if form.is_valid():
             user = authenticate(username=form['username'].value(), password=form['password'].value())
             if user is not None and user.is_active:
-                if request.POST.get('remember'):
-                    request.session['user'] = user
                 login(request, user)
                 return redirect('account:profile')
         error = True

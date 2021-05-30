@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
+    'history',
 ]
 
 MIDDLEWARE = [
@@ -64,8 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'account.context_processor.ssh'
+                'django.contrib.messages.context_processors.messages'
             ],
         },
     },

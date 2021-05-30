@@ -20,9 +20,10 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('', RedirectView.as_view(url='/account/register/'), name='go_to_register'),
+    path('', RedirectView.as_view(url='/account/login/'), name='goto_login'),
     path('admin/', admin.site.urls),
     path('account/', include('account.urls', namespace='account')),
+    path('history/', include('history.urls', namespace='history')),
 ]
 
 if settings.DEBUG:
