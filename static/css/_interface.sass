@@ -1,6 +1,49 @@
 @import 'colors'
 @import 'fonts'
 
+.double-btn
+  display: flex
+  justify-content: center
+  align-items: center
+  &-first
+    text-align: center
+    height: 80px
+    width: 350px
+    background-color: $yellow
+    color: $dark
+    font-size: 36px
+    @include regular
+    border: none
+    border-top-left-radius: 15px
+    border-bottom-left-radius: 15px
+    &:hover
+      cursor: pointer
+  &-second
+    text-align: center
+    height: 80px
+    width: 285px
+    background-color: transparent
+    color: $dark
+    font-size: 18px
+    @include regular
+    border: 2px solid $yellow
+    border-top-right-radius: 15px
+    border-bottom-right-radius: 15px
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    & a
+      display: inline-block
+      width: 100%
+      color: $yellow
+      text-decoration: none
+      @include bold
+      font-size: 24px
+      &:hover
+        cursor: pointer
+        text-decoration: underline
+
 .btn
   color: $dark
   border-radius: 25px
@@ -10,6 +53,7 @@
   outline: none
   text-align: center
   padding: 20px
+
   &:hover
     cursor: pointer
 
@@ -19,15 +63,34 @@
   @include regular
   border-radius: 25px
   border: 1px solid $dark
-  font-size: 36px
+  font-size: 30px
   margin-bottom: 20px
   text-align: left
+  background-color: transparent
+  height: 100%
+  width: 635px
+  padding-left: 45px
 
   &::placeholder
     color: $dark
     opacity: 0.6
-    padding-left: 65px
-    font-size: 36px
+  &-error
+    color: $dark
+    outline: none
+    @include regular
+    border-radius: 25px
+    border: 1px solid $red
+    font-size: 30px
+    margin-bottom: 20px
+    text-align: left
+    background-color: transparent
+    height: 100%
+    width: 635px
+    padding-left: 45px
+    &::placeholder
+      color: $red
+      opacity: 0.6
+
 .title
   color: $yellow
   font-size: 36px

@@ -1,18 +1,20 @@
 from django import forms
 from django.contrib.auth.models import User
 
+from account.models import Profile
+
 
 class UserLoginForm(forms.ModelForm):
-    username = forms.CharField(label='Login', label_suffix='', widget=forms.TextInput(
+    username = forms.CharField(label='Email', label_suffix='', widget=forms.EmailInput(
         attrs={
-            'class': 'login_form-field',
-            'placeholder': 'Username'
+            'placeholder': 'Email',
+            'class': 'input',
         }
     ))
-    password = forms.CharField(label='Password', widget=forms.PasswordInput(
+    password = forms.CharField(label='Пароль', label_suffix='', widget=forms.PasswordInput(
         attrs={
-            'class': 'login_form-field',
-            'placeholder': 'Password'
+            'placeholder': 'Пароль',
+            'class': 'input',
         }
     ))
 
@@ -21,52 +23,97 @@ class UserLoginForm(forms.ModelForm):
         fields = ()
 
 
+class EmailCodeForm(forms.ModelForm):
+    code = forms.IntegerField(label='Код', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'Код',
+            'class': 'input',
+        }
+    ))
+
+    class Meta:
+        model = Profile
+        fields = ()
+
+    def clean_code(self):
+        code = self.cleaned_data.get('code')
+        if not Profile.objects.filter(code=code).exists():
+            self.fields['code'].widget.attrs.update({
+                'class': 'input-error',
+                'placeholder': 'Incorrect code',
+            })
+            raise forms.ValidationError('')
+        return code
+
+
 class UserRegistrationForm(forms.ModelForm):
     error_css_class = 'error'
 
-    username = forms.CharField(label='Login', label_suffix='', widget=forms.TextInput(
+    first_name = forms.CharField(label='Имя', label_suffix='', widget=forms.TextInput(
         attrs={
-            'placeholder': 'Username',
-            'class': 'rg_form-field',
+            'placeholder': 'Ваше имя',
+            'class': 'input',
+        }
+    ))
+    last_name = forms.CharField(label='Фамилия', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'Ваша фамилия',
+            'class': 'input',
+        }
+    ))
+    username = forms.CharField(label='Имя пользователя', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'Имя пользователя',
+            'class': 'input',
         }
     ))
     email = forms.CharField(label='Email', label_suffix='', widget=forms.EmailInput(
         attrs={
-            'placeholder': 'Email',
-            'class': 'rg_form-field',
+            'placeholder': 'Ваш Email',
+            'class': 'input',
         }
     ))
-    first_name = forms.CharField(label='Name', label_suffix='', widget=forms.TextInput(
+    password = forms.CharField(label='Пароль', label_suffix='', widget=forms.PasswordInput(
         attrs={
-            'placeholder': 'First name',
-            'class': 'rg_form-field',
+            'placeholder': 'Введите пароль',
+            'class': 'input',
         }
     ))
-    last_name = forms.CharField(label='Surname', label_suffix='', widget=forms.TextInput(
+    password2 = forms.CharField(label='Повторите пароль', label_suffix='', widget=forms.PasswordInput(
         attrs={
-            'placeholder': 'Last name',
-            'class': 'rg_form-field',
-        }
-    ))
-    password = forms.CharField(label='Password', label_suffix='', widget=forms.PasswordInput(
-        attrs={
-            'placeholder': 'Password',
-            'class': 'rg_form-field',
-        }
-    ))
-    password2 = forms.CharField(label='Repeat password', label_suffix='', widget=forms.PasswordInput(
-        attrs={
-            'placeholder': 'Repeat password',
-            'class': 'rg_form-field',
+            'placeholder': 'Повторите пароль',
+            'class': 'input',
         }
     ))
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email')
+        fields = ('first_name', 'last_name', 'username', 'email', 'password')
 
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password'] != cd['password2']:
-            raise forms.ValidationError('Passwords don\'t match.')
+            raise forms.ValidationError('')
         return cd['password2']
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if email and User.objects.filter(email=email).exists():
+            user = User.objects.get(email=email)
+            if user.is_active:
+                self.fields['email'].widget.attrs.update({
+                    'class': 'input-error',
+                    'placeholder': 'Email уже занят',
+                })
+                raise forms.ValidationError('')
+        return email
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if username and User.objects.filter(username=username).exists():
+            self.fields['username'].widget.attrs.update({
+                'class': 'input-error',
+                'placeholder': 'Имя пользователя уже занято',
+            })
+            raise forms.ValidationError('')
+        return username

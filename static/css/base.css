@@ -1,4 +1,56 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+.double-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.double-btn-first {
+  text-align: center;
+  height: 80px;
+  width: 350px;
+  background-color: #FAD150;
+  color: #3F3D56;
+  font-size: 36px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  border: none;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.double-btn-first:hover {
+  cursor: pointer;
+}
+.double-btn-second {
+  text-align: center;
+  height: 80px;
+  width: 285px;
+  background-color: transparent;
+  color: #3F3D56;
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  border: 2px solid #FAD150;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.double-btn-second a {
+  display: inline-block;
+  width: 100%;
+  color: #FAD150;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+.double-btn-second a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .btn {
   color: #3F3D56;
   border-radius: 25px;
@@ -21,15 +73,36 @@
   font-weight: 400;
   border-radius: 25px;
   border: 1px solid #3F3D56;
-  font-size: 36px;
+  font-size: 30px;
   margin-bottom: 20px;
   text-align: left;
+  background-color: transparent;
+  height: 100%;
+  width: 635px;
+  padding-left: 45px;
 }
 .input::placeholder {
   color: #3F3D56;
   opacity: 0.6;
-  padding-left: 65px;
-  font-size: 36px;
+}
+.input-error {
+  color: #3F3D56;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  border-radius: 25px;
+  border: 1px solid #FF0000;
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-align: left;
+  background-color: transparent;
+  height: 100%;
+  width: 635px;
+  padding-left: 45px;
+}
+.input-error::placeholder {
+  color: #FF0000;
+  opacity: 0.6;
 }
 
 .title {
@@ -69,6 +142,9 @@ header .sign {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+header .sign:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=base.css.map */

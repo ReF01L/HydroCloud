@@ -1,1 +1,41 @@
 @import '../interface'
+
+.rg
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+  &-title
+    align-self: flex-start
+    margin-left: 5%
+  &_content
+    font-size: 24px
+    @include medium
+    color: $dark
+    width: 730px
+    margin: 15px 0 25px
+
+  &_form
+    margin-top: 30px
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    & .back
+      color: $dark
+      font-size: 36px
+      @include regular
+
+    & p
+      position: relative
+      height: 60px
+      margin-bottom: 20px
+      width: 900px
+      display: flex
+
+      & label
+        align-self: flex-end
+        margin-left: 15px
+        font-size: 24px
+        @include light
+        color: $dark

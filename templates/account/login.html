@@ -4,21 +4,30 @@
     <link rel="stylesheet" href="{% static 'css/account/login.css' %}">
 {% endblock %}
 
-{% block title %} - Sign in{% endblock %}
-{% block header %}
-    <div class="header_auth">
-        <a class="header_auth-btn" href="{% url 'account:register' %}">Sign Up</a>
-    </div>
-{% endblock %}
+{% block title %} - Авторизация{% endblock %}
 {% block content %}
     <div class="login">
-    {% if error %}
-        <h1 class="error">You entered incorrect data</h1>
-    {% endif %}
+        <div class="login-title title">Авторизация</div>
         <form action="." method="post" class="login_form">
-            {{ form.as_p }}
+            {% if error %}
+                <h1 class="login-error">
+                    Неверный логин или пароль
+                </h1>
+            {% endif %}
+            {% for field in form %}
+                <p>
+                    {{ field }}
+                    {{ field.label_tag }}
+                </p>
+            {% endfor %}
             {% csrf_token %}
-            <input type="submit" value="Sign in" class="login_form-btn">
+            <div class="double-btn">
+                <input type="submit" value="Войти" class="double-btn-first">
+                <div class="double-btn-second">
+                    Ещё нет аккаунта?
+                    <a href="{% url 'account:register' %}">Зарегистрировать</a>
+                </div>
+            </div>
         </form>
     </div>
 {% endblock %}

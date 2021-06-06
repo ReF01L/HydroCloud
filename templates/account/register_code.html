@@ -2,13 +2,6 @@
 {% load static %}
 {% block extrahead %}
     <link rel="stylesheet" href="{% static 'css/account/register.css' %}">
-    <script>
-        window.onload = () => {
-            document.querySelectorAll('.input-error').forEach(item => {
-                item.value = ''
-            })
-        }
-    </script>
 {% endblock %}
 
 {% block title %} - Регистрация{% endblock %}
@@ -16,6 +9,7 @@
     <div class="rg">
         <div class="rg-title title">Регистрация</div>
         <form action="." method="post" class="rg_form">
+            <div class="rg_content">Вам на почту был отправлен код. Пожалуйста, введите его в поле ниже</div>
             {% for field in form %}
                 <p>
                     {{ field }}
@@ -26,8 +20,7 @@
             <div class="double-btn">
                 <input type="submit" value="Создать аккаунт" class="double-btn-first">
                 <div class="double-btn-second">
-                    Уже есть аккаунт?
-                    <a href="{% url 'account:user_login' %}">Войти</a>
+                    <a href="{% url 'account:register' %}" class="back">Назад</a>
                 </div>
             </div>
         </form>

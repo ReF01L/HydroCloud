@@ -10,10 +10,10 @@
 </head>
 <body>
 <header>
-    <div class="logo">
+    <div class="logo" onclick="window.location='{% url 'landing' %}'">
         <img src="{% static 'img/logo.png' %}" alt="logo">
     </div>
-    <div class="sign">
+    <div class="sign" onclick="window.location='{% url 'account:user_login' %}'">
         <div class="sign-img">
             <img src="{% static 'img/sign_in.png' %}" alt="SignIn Icon">
         </div>

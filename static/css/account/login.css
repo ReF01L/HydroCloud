@@ -1,17 +1,160 @@
-/* Error: Undefined variable.
- *    ,
- * 31 |       color: $light
- *    |              ^^^^^^
- *    '
- *   login.sass 31:14  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a    \2577 \a 31 \2502        color: $light\a    \2502               ^^^^^^\a    \2575 \a   login.sass 31:14  root stylesheet";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+.double-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+.double-btn-first {
+  text-align: center;
+  height: 80px;
+  width: 350px;
+  background-color: #FAD150;
+  color: #3F3D56;
+  font-size: 36px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  border: none;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.double-btn-first:hover {
+  cursor: pointer;
+}
+.double-btn-second {
+  text-align: center;
+  height: 80px;
+  width: 285px;
+  background-color: transparent;
+  color: #3F3D56;
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  border: 2px solid #FAD150;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.double-btn-second a {
+  display: inline-block;
+  width: 100%;
+  color: #FAD150;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+.double-btn-second a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.btn {
+  color: #3F3D56;
+  border-radius: 25px;
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  text-align: center;
+  padding: 20px;
+}
+.btn:hover {
+  cursor: pointer;
+}
+
+.input {
+  color: #3F3D56;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  border-radius: 25px;
+  border: 1px solid #3F3D56;
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-align: left;
+  background-color: transparent;
+  height: 100%;
+  width: 635px;
+  padding-left: 45px;
+}
+.input::placeholder {
+  color: #3F3D56;
+  opacity: 0.6;
+}
+.input-error {
+  color: #3F3D56;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  border-radius: 25px;
+  border: 1px solid #FF0000;
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-align: left;
+  background-color: transparent;
+  height: 100%;
+  width: 635px;
+  padding-left: 45px;
+}
+.input-error::placeholder {
+  color: #FF0000;
+  opacity: 0.6;
+}
+
+.title {
+  color: #FAD150;
+  font-size: 36px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  width: 255px;
+  border-bottom: 1px solid #3F3D56;
+  text-align: left;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+.login-error {
+  text-align: center;
+  width: 635px;
+  color: #FF0000;
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
+.login-title {
+  align-self: flex-start;
+  margin-left: 5%;
+}
+.login_form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.login_form p {
+  position: relative;
+  height: 60px;
+  margin-bottom: 20px;
+  width: 900px;
+  display: flex;
+}
+.login_form p label {
+  align-self: flex-end;
+  margin-left: 15px;
+  font-size: 24px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  color: #3F3D56;
+}
+
+/*# sourceMappingURL=login.css.map */

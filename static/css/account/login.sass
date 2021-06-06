@@ -1,79 +1,39 @@
-@import '../colors'
+@import '../interface'
 
 .login
   display: flex
   flex-direction: column
   justify-content: center
   align-items: center
-  min-height: calc(100vh - 90px)
-
-  & .error
-    color: red
-    opacity: 0.7
-    font-size: 18px
+  margin-top: 100px
+  &-error
+    text-align: center
+    width: 635px
+    color: $red
     margin-bottom: 15px
+    font-size: 24px
+    @include light
+
+  &-title
+    align-self: flex-start
+    margin-left: 5%
 
   &_form
-    width: 35%
+    margin-top: 30px
     display: flex
     flex-direction: column
-    align-items: center
-    justify-content: center
-    border: 2px solid $dark
-    border-radius: 15px
+    align-items: flex-start
 
     & p
-      width: 100%
-
-    &-field
-      width: 100%
-      font-size: 24px
-      color: $light
-      background: transparent
-      border: none
-      outline: none
-      text-align: center
+      position: relative
       height: 60px
-      border-bottom: 1px solid $dark
+      margin-bottom: 20px
+      width: 900px
+      display: flex
 
-      &-error
-        width: 100%
+      & label
+        align-self: flex-end
+        margin-left: 15px
         font-size: 24px
-        color: $light
-        background: transparent
-        border: none
-        outline: none
-        text-align: center
-        height: 60px
-        border-bottom: 1px solid $dark
-
-        &::placeholder
-          color: red
-
-      &::placeholder
-        color: $light
-        opacity: 0.7
-
-      &:focus
-        background: $light
-        color: black
-
-    &-btn
-      font-size: 36px
-      color: $white
-      background: $light
-      border: none
-      outline: none
-      width: 100%
-      padding: 5px 1%
-      border-bottom-left-radius: 15px
-      border-bottom-right-radius: 15px
-
-      &:hover
-        cursor: pointer
-
-    & .errorlist
-      color: red
-      padding-top: 5px
-      list-style-type: none
-      transform: translateY(100%)
+        @include light
+        color: $dark
