@@ -1,0 +1,107 @@
+@import 'interface'
+
+.landing
+  & .hero
+    margin-top: 80px
+    width: 825px
+    &-text
+      width: 665px
+      font-size: 36px
+      @include medium
+      text-align: left
+      color: $dark
+    &_btns
+      display: flex
+      justify-content: space-between
+      margin: 120px auto 110px
+      &-btn
+        width: 350px
+        background-color: $yellow
+        -webkit-transition: 0.2s
+        -moz-transition: 0.2s
+        -ms-transition: 0.2s
+        -o-transition: 0.2s
+        transition: 0.2s
+        &:hover
+          -webkit-transform: scale(1.1)
+          -moz-transform: scale(1.1)
+          -ms-transform: scale(1.1)
+          -o-transform: scale(1.1)
+          transform: scale(1.1)
+        &:last-child
+          background-color: $gray
+  & .algs
+    &-title
+      margin-bottom: 12px
+    &_cards
+      display: flex
+      flex-direction: column
+      align-self: flex-start
+      justify-content: flex-start
+      &_card
+        position: relative
+        margin-bottom: 30px
+        box-shadow: 2px 2px 4px 2px rgba(63, 61, 86, 0.5)
+        background: $white
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: flex-start
+        padding: 0 95px
+        -webkit-transition: 0.2s
+        -moz-transition: 0.2s
+        -ms-transition: 0.2s
+        -o-transition: 0.2s
+        transition: 0.2s
+        &:hover
+          -webkit-transform: scale(1.1)
+          -moz-transform: scale(1.1)
+          -ms-transform: scale(1.1)
+          -o-transform: scale(1.1)
+          transform: scale(1.1)
+          cursor: pointer
+        &-title
+          margin: 25px auto 10px
+          color: $dark
+          @include medium
+          font-size: 36px
+          border-bottom: 1px solid $dark
+          width: 100%
+          text-align: center
+        &-description
+          color: $dark
+          font-size: 18px
+          text-align: left
+          margin-bottom: 30px
+          @include medium
+  & .command
+    margin-bottom: 50px
+    &-title
+      margin-bottom: 12px
+    &_cards
+      display: flex
+      flex-direction: column
+      align-self: flex-start
+      justify-content: flex-start
+      &_card
+        position: relative
+        box-shadow: 2px 2px 4px 2px rgba(63, 61, 86, 0.5)
+        background: $white
+        display: flex
+        padding: 16px 0
+        margin-bottom: 32px
+        &-img
+          margin: auto 30px auto 20px
+          background-color: #ccc
+          & img
+            width: 140px
+            height: 140px
+        &_body
+          margin-top: 20px
+          margin-right: 100px
+          color: $dark
+          font-size: 24px
+          @include medium
+          &-title
+            margin-bottom: 15px
+          &-info

@@ -6,7 +6,8 @@
 {% block title %} - Profile{% endblock %}
 {% block header %}
     <div class="header_auth">
-        <a class="header_auth-btn" href="{% url 'history:all_history' %}">All requests</a>
+        <a href="{% url 'history:all_history' %}" class="header_auth-btn">All requests</a>
+        <a href="{% url 'acoustic:acoustic' %}" class="header_auth-btn">Generate image</a>
         <a class="header_auth-btn" href="{% url 'account:logout' %}">Log out</a>
     </div>
 {% endblock %}

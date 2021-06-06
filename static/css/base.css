@@ -1,63 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+.btn {
+  color: #3F3D56;
+  border-radius: 25px;
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  text-align: center;
+  padding: 20px;
+}
+.btn:hover {
+  cursor: pointer;
+}
+
+.input {
+  color: #3F3D56;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  border-radius: 25px;
+  border: 1px solid #3F3D56;
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.input::placeholder {
+  color: #3F3D56;
+  opacity: 0.6;
+  padding-left: 65px;
+  font-size: 36px;
+}
+
+.title {
+  color: #FAD150;
+  font-size: 36px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  width: 255px;
+  border-bottom: 1px solid #3F3D56;
+  text-align: left;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Roboto, sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  color: #3F3D56;
 }
 
 body {
-  min-height: 100vh;
+  max-width: 1140px;
+  margin: auto;
+  background-color: #F1F1F1;
 }
 
-.header {
-  background-color: #297C6E;
-  width: 100vw;
-  height: 90px;
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.header_logo {
-  margin-left: 15px;
+header .logo img {
+  width: 255px;
 }
-.header_logo-img {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-}
-.header_data {
-  margin: auto;
-}
-.header_data span {
-  color: #FFFFFF;
-  font-size: 24px;
-  letter-spacing: 2px;
-}
-.header_auth {
-  margin: 25px 15px 25px auto;
+header .sign {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-}
-.header_auth-btn {
-  color: #57A094;
-  background-color: #fff;
-  border-radius: 15px;
-  outline: none;
-  border: none;
-  box-shadow: 0 4px 4px 0 #00000040;
-  width: 120px;
-  height: 40px;
-  font-size: 18px;
-  display: block;
-  text-align: center;
-  padding-top: 10px;
-  margin: 10px;
-}
-.header_auth-btn:hover {
-  cursor: pointer;
-  background-color: #57A094;
-  color: #fff;
 }
 
 /*# sourceMappingURL=base.css.map */

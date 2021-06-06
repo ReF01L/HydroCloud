@@ -9,11 +9,18 @@
     {% block extrahead %}{% endblock %}
 </head>
 <body>
-<header class="header">
-    <div class="header_logo">
-        <img src="{% static 'img/logo.png' %}" alt="logo" class="header_logo-img"/>
+<header>
+    <div class="logo">
+        <img src="{% static 'img/logo.png' %}" alt="logo">
     </div>
-    {% block header %}{% endblock %}
+    <div class="sign">
+        <div class="sign-img">
+            <img src="{% static 'img/sign_in.png' %}" alt="SignIn Icon">
+        </div>
+        <div class="sign-text">
+            Войти
+        </div>
+    </div>
 </header>
 <div class="content">
     {% block content %}

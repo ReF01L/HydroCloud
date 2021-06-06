@@ -1,0 +1,37 @@
+@import 'colors'
+@import 'fonts'
+
+.btn
+  color: $dark
+  border-radius: 25px
+  font-size: 20px
+  @include medium
+  border: none
+  outline: none
+  text-align: center
+  padding: 20px
+  &:hover
+    cursor: pointer
+
+.input
+  color: $dark
+  outline: none
+  @include regular
+  border-radius: 25px
+  border: 1px solid $dark
+  font-size: 36px
+  margin-bottom: 20px
+  text-align: left
+
+  &::placeholder
+    color: $dark
+    opacity: 0.6
+    padding-left: 65px
+    font-size: 36px
+.title
+  color: $yellow
+  font-size: 36px
+  @include bold
+  width: 255px
+  border-bottom: 1px solid $dark
+  text-align: left

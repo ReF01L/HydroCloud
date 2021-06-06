@@ -6,12 +6,6 @@ from django.views.decorators.http import require_GET
 
 from account.forms import UserRegistrationForm, UserLoginForm
 from account.models import Profile
-from account.ssh import SSH
-
-
-def command(request):
-    user = Profile.objects.get(user=request.user)
-    return render(request, 'account/profile.html', {'content': SSH().command('ls -la'), 'user': user})
 
 
 @require_GET
@@ -20,22 +14,6 @@ def profile(request):
         user = Profile.objects.get(user=request.user)
         return render(request, 'account/profile.html', {'user': user})
     return home(request, False)
-
-
-def home(request, error):
-    if not request.user.is_anonymous:
-        return profile(request)
-    if request.path == '/account/login/':
-        return render(request, 'account/login.html', {
-            'form': UserLoginForm(),
-            'error': error
-        })
-    elif request.path == '/account/register/':
-        return render(request, 'account/register.html', {
-            'form': UserRegistrationForm(),
-            'error': error
-        })
-    return redirect('account:user_login')
 
 
 def user_logout(request):
@@ -54,7 +32,10 @@ def user_login(request):
                 login(request, user)
                 return redirect('account:profile')
         error = True
-    return home(request, error)
+    return render(request, 'account/login.html', {
+        'form': UserLoginForm(),
+        'error': error
+    })
 
 
 def register(request):
@@ -65,7 +46,10 @@ def register(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
-            Profile.objects.create(user=User.objects.get(id=user.id))
+            Profile.objects.create(user=user)
             return redirect('account:user_login')
         error = True
-    return home(request, error)
+    return render(request, 'account/register.html', {
+        'form': UserRegistrationForm(),
+        'error': error
+    })

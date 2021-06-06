@@ -1,76 +1,17 @@
-.container {
-  margin-top: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-.container .hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.container .hero .image {
-  width: 30%;
-  margin-right: 15px;
-}
-.container .hero .image img {
-  width: 100%;
-  border-radius: 10px;
-}
-.container .hero .fields {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 30%;
-  margin-left: 15px;
-}
-.container .hero .fields .field {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid black;
-  width: 100%;
-  margin-top: 50px;
-}
-.container .hero .fields .field-key {
-  text-transform: capitalize;
-  font-size: 24px;
-  font-weight: 600;
-}
-.container .hero .fields .field-value {
-  text-transform: uppercase;
-  font-size: 18px;
-}
-.container .info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 25px;
-  width: 20%;
-  height: 50px;
-}
-.container .info-stat {
-  font-size: 24px;
-}
-.container .info-history {
-  text-decoration: none;
-  color: #297C6E;
-  font-weight: 600;
-  font-size: 32px;
-  border: 2px dashed #57A094;
-  text-align: center;
-  padding: 10px 40px;
-  -webkit-transition: 0.2s;
-  -moz-transition: 0.2s;
-  -ms-transition: 0.2s;
-  -o-transition: 0.2s;
-  transition: 0.2s;
-}
-.container .info-history:hover {
-  background-color: #57A094;
-  border: 2px dashed transparent;
-}
+/* Error: Undefined variable.
+ *    ,
+ * 60 |       border: 2px dashed $light
+ *    |                          ^^^^^^
+ *    '
+ *   profile.sass 60:26  root stylesheet */
 
-/*# sourceMappingURL=profile.css.map */
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined variable.\a    \2577 \a 60 \2502        border: 2px dashed $light\a    \2502                           ^^^^^^\a    \2575 \a   profile.sass 60:26  root stylesheet";
+}

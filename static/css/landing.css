@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+.btn {
+  color: #3F3D56;
+  border-radius: 25px;
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  text-align: center;
+  padding: 20px;
+}
+.btn:hover {
+  cursor: pointer;
+}
+
+.input {
+  color: #3F3D56;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  border-radius: 25px;
+  border: 1px solid #3F3D56;
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.input::placeholder {
+  color: #3F3D56;
+  opacity: 0.6;
+  padding-left: 65px;
+  font-size: 36px;
+}
+
+.title {
+  color: #FAD150;
+  font-size: 36px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  width: 255px;
+  border-bottom: 1px solid #3F3D56;
+  text-align: left;
+}
+
+.landing .hero {
+  margin-top: 80px;
+  width: 825px;
+}
+.landing .hero-text {
+  width: 665px;
+  font-size: 36px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  text-align: left;
+  color: #3F3D56;
+}
+.landing .hero_btns {
+  display: flex;
+  justify-content: space-between;
+  margin: 120px auto 110px;
+}
+.landing .hero_btns-btn {
+  width: 350px;
+  background-color: #FAD150;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+}
+.landing .hero_btns-btn:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.landing .hero_btns-btn:last-child {
+  background-color: #E0E0E0;
+}
+.landing .algs-title {
+  margin-bottom: 12px;
+}
+.landing .algs_cards {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  justify-content: flex-start;
+}
+.landing .algs_cards_card {
+  position: relative;
+  margin-bottom: 30px;
+  box-shadow: 2px 2px 4px 2px rgba(63, 61, 86, 0.5);
+  background: #F1F1F1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 95px;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+}
+.landing .algs_cards_card:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.landing .algs_cards_card-title {
+  margin: 25px auto 10px;
+  color: #3F3D56;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  border-bottom: 1px solid #3F3D56;
+  width: 100%;
+  text-align: center;
+}
+.landing .algs_cards_card-description {
+  color: #3F3D56;
+  font-size: 18px;
+  text-align: left;
+  margin-bottom: 30px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+.landing .command {
+  margin-bottom: 50px;
+}
+.landing .command-title {
+  margin-bottom: 12px;
+}
+.landing .command_cards {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  justify-content: flex-start;
+}
+.landing .command_cards_card {
+  position: relative;
+  box-shadow: 2px 2px 4px 2px rgba(63, 61, 86, 0.5);
+  background: #F1F1F1;
+  display: flex;
+  padding: 16px 0;
+  margin-bottom: 32px;
+}
+.landing .command_cards_card-img {
+  margin: auto 30px auto 20px;
+  background-color: #ccc;
+}
+.landing .command_cards_card-img img {
+  width: 140px;
+  height: 140px;
+}
+.landing .command_cards_card_body {
+  margin-top: 20px;
+  margin-right: 100px;
+  color: #3F3D56;
+  font-size: 24px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+.landing .command_cards_card_body-title {
+  margin-bottom: 15px;
+}
+
+/*# sourceMappingURL=landing.css.map */
