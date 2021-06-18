@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from account.models import Profile
 
 
-class LoginForm(forms.ModelForm):
+class LoginForm(forms.Form):
     username = forms.CharField(label='Username', label_suffix='', widget=forms.TextInput(
         attrs={
             'placeholder': 'Username',
@@ -24,6 +24,7 @@ class LoginForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
+        self.errors.clear()
 
 
 class EmailCodeForm(forms.ModelForm):
