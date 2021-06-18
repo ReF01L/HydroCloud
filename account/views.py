@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from HydroCloud import settings
-from account.forms import UserRegistrationForm, UserLoginForm, EmailCodeForm
+from account.forms import UserRegistrationForm, LoginForm, EmailCodeForm
 from account.models import Profile
 
 
@@ -18,12 +18,13 @@ def user_logout(request):
 
 @csrf_exempt
 def user_login(request):
-    form = UserLoginForm(request.POST or None)
+    form = LoginForm(request.POST or None)
     error = False
     if request.method == 'POST':
         error = True
         if form.is_valid():
-            user = authenticate(username=form['username'].value(), password=form['password'].value())
+            cd = form.cleaned_data
+            user = authenticate(username=cd['username'], password=cd['password'])
             if user is not None and user.is_active:
                 login(request, user)
                 return redirect('account:profile')

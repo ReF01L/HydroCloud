@@ -4,10 +4,10 @@ from django.contrib.auth.models import User
 from account.models import Profile
 
 
-class UserLoginForm(forms.ModelForm):
-    username = forms.CharField(label='Email', label_suffix='', widget=forms.EmailInput(
+class LoginForm(forms.ModelForm):
+    username = forms.CharField(label='Username', label_suffix='', widget=forms.TextInput(
         attrs={
-            'placeholder': 'Email',
+            'placeholder': 'Username',
             'class': 'input',
         }
     ))
@@ -20,7 +20,11 @@ class UserLoginForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ()
+        fields = ('username', 'password')
+
+    def __init__(self, *args, **kwargs):
+        super(LoginForm, self).__init__(*args, **kwargs)
+        self.errors.clear()
 
 
 class EmailCodeForm(forms.ModelForm):
@@ -33,7 +37,7 @@ class EmailCodeForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ()
+        fields = ('code',)
 
     def clean_code(self):
         code = self.cleaned_data.get('code')

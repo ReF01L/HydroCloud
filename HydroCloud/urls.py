@@ -23,6 +23,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='landing.html'), name='landing'),
     path('admin/', admin.site.urls),
     path('account/', include('account.urls', namespace='account')),
+    path('algorithm/', include('algorithm.urls', namespace='algorithm')),
 ]
 
 if settings.DEBUG:
