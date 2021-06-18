@@ -1,8 +1,10 @@
 import random
 
 from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 
@@ -32,6 +34,11 @@ def user_login(request):
         'form': form,
         'error': error
     })
+
+
+@login_required(login_url='/account/login/')
+def profile(request):
+    return HttpResponse('PROFILE')
 
 
 def register(request):

@@ -13,5 +13,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a    \2577 \a 60 \2502        border: 2px dashed $light\a    \2502                           ^^^^^^\a    \2575 \a   profile.sass 60:26  root stylesheet";
+  content: "Error: Undefined variable.\a    \2577 \a 60 \2502        border: 2px dashed $light\d\a    \2502                           ^^^^^^\a    \2575 \a   profile.sass 60:26  root stylesheet";
 }
