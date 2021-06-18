@@ -20,11 +20,10 @@ class LoginForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'password')
+        fields = ()
 
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
-        self.errors.clear()
 
 
 class EmailCodeForm(forms.ModelForm):
