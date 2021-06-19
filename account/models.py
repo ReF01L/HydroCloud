@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db import models
 
+from account import algorithms
+
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -10,21 +12,7 @@ class Profile(models.Model):
         return self.user.username
 
 
-# Алгоритмы фильтрации объёмного рассеяния
-class VolumetricScatterFiltration(models.Model):
-    pass
-
-
-# Медианная фильтрация
-class MedianFiltering(models.Model):
-    pass
-
-
-# Двойная фильтрация
-class DoubleFiltration(models.Model):
-    pass
-
-
-# Логарифмическая фильтрация
-class LogarithmicFiltering(models.Model):
-    pass
+class Algorithm(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Username')
+    name = models.CharField(choices=algorithms.Algorithms.choices, max_length=50, verbose_name='Algorithm name')
+    params = models.CharField(max_length=1000, verbose_name='Parameters')

@@ -14,40 +14,27 @@
 {% block content %}
     <div class="container">
         <div class="hero">
-            <div class="image">
-                {% if user.avatar %}
-                    <img src="{{ user.avatar.url }}" alt="Profile image">
-                {% else %}
-                    <img src="{% static 'img/account/user.png' %}" alt="Profile image">
-                {% endif %}
-            </div>
             <div class="fields">
                 <div class="field">
                     <div class="field-key">username</div>
-                    <div class="field-value">{{ user.user.username }}</div>
-                </div>
-                <div class="field">
-                    <div class="field-key">email</div>
-                    <div class="field-value">{{ user.user.email }}</div>
+                    <div class="field-value">{{ user.username }}</div>
                 </div>
                 <div class="field">
                     <div class="field-key">name</div>
-                    <div class="field-value">{{ user.user.first_name }}</div>
+                    <div class="field-value">{{ user.first_name }}</div>
                 </div>
                 <div class="field">
-                    <div class="field-key">last name</div>
-                    <div class="field-value">{{ user.user.last_name }}</div>
+                    <div class="field-key">Surname</div>
+                    <div class="field-value">{{ user.last_name }}</div>
                 </div>
                 <div class="field">
-                    <div class="field-key">organisation</div>
-                    <div class="field-value">{{ user.organization }}</div>
+                    <div class="field-key">email</div>
+                    <div class="field-value">{{ user.email }}</div>
                 </div>
             </div>
         </div>
     <div class="info">
-{#        TODO: count a len of the added images#}
         <div class="info-stat">0</div>
-        <a href="{% url 'history:history' %}" class="info-history">Show history</a>
     </div>
     </div>
 {% endblock %}

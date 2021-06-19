@@ -1,3 +1,4 @@
+import os
 import random
 
 from django.contrib.auth import logout, authenticate, login
@@ -11,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from HydroCloud import settings
 from account.forms import UserRegistrationForm, LoginForm, EmailCodeForm
 from account.models import Profile
+from account.ssh import SFTP, SSH
 
 
 def user_logout(request):
@@ -38,7 +40,16 @@ def user_login(request):
 
 @login_required(login_url='/account/login/')
 def profile(request):
-    return HttpResponse('PROFILE')
+    sftp = SFTP()
+    # GET
+    local_path = 'C:\\Users\\ReF0iL\\Desktop\\HydroCloud\\account\\paralleled.cpp'
+    remote_path = '/home/dsalushkin/mpi/paralleled.cpp'
+    sftp.get_file(local_path, remote_path)
+    # PUT
+    local_path = 'C:\\Users\\ReF0iL\\Desktop\\HydroCloud\\account\\views.py'
+    remote_path = '/home/dsalushkin/mpi/views.py'
+    sftp.put_file(local_path, remote_path)
+    return render(request, 'account/profile.html')
 
 
 def register(request):
