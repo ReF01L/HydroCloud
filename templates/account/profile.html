@@ -26,60 +26,30 @@
                 </div>
             </div>
         </div>
-    <div class="info">
-        <div class="info_cards">
-            <div class="info_cards_card">
-                <div class="info_cards_card-title">Алгоритмы фильтрации объёмного рассеяния</div>
-                <div class="info_cards_card_params">
-                    <div class="info_cards_card_params-param">
-                        Param1: 1
+        <div class="info">
+            <div class="info_cards">
+                {% for algoritm in algoritms %}
+                    <div class="info_cards_card">
+                        <div class="info_cards_card-title">{{ algoritm.name }}</div>
+                        <div class="info_cards_card_params">
+                            {% for param in params %}
+                                <div class="info_cards_card_params-param">
+                                    Param1: 1
+                                </div>
+                                <div class="info_cards_card_params-param">
+                                    Param2: 2
+                                </div>
+                                <div class="info_cards_card_params-param">
+                                    Param3: 3
+                                </div>
+                                <div class="info_cards_card_params-param">
+                                    Param4: 4
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
-                    <div class="info_cards_card_params-param">
-                        Param2: 2
-                    </div>
-                    <div class="info_cards_card_params-param">
-                        Param3: 3
-                    </div>
-                    <div class="info_cards_card_params-param">
-                        Param4: 4
-                    </div>
-                </div>
-            </div>
-            <div class="info_cards_card">
-                <div class="info_cards_card-title">Алгоритмы фильтрации объёмного рассеяния</div>
-                <div class="info_cards_card_params">
-                    <div class="info_cards_card_params-param">
-                        Param1: 1
-                    </div>
-                    <div class="info_cards_card_params-param">
-                        Param2: 2
-                    </div>
-                    <div class="info_cards_card_params-param">
-                        Param3: 3
-                    </div>
-                    <div class="info_cards_card_params-param">
-                        Param4: 4
-                    </div>
-                </div>
-            </div>
-            <div class="info_cards_card">
-                <div class="info_cards_card-title">Алгоритмы фильтрации объёмного рассеяния</div>
-                <div class="info_cards_card_params">
-                    <div class="info_cards_card_params-param">
-                        Param1: 1
-                    </div>
-                    <div class="info_cards_card_params-param">
-                        Param2: 2
-                    </div>
-                    <div class="info_cards_card_params-param">
-                        Param3: 3
-                    </div>
-                    <div class="info_cards_card_params-param">
-                        Param4: 4
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
-    </div>
     </div>
 {% endblock %}
