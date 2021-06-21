@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from account import algorithms
+from account import consts
 from account.models import Profile, Algorithm
 
 
@@ -125,7 +125,7 @@ class UserRegistrationForm(forms.ModelForm):
 
 
 class ChooseAlgForm(forms.Form):
-    name = forms.ChoiceField(label='', label_suffix='', choices=algorithms.Algorithms.choices, widget=forms.Select(
+    name = forms.ChoiceField(label='', label_suffix='', choices=consts.Algorithms.choices, widget=forms.Select(
         attrs={
             'class': 'input'
         }

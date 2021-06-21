@@ -17,7 +17,7 @@ from account.models import Profile
 from account.forms import UserRegistrationForm, LoginForm, EmailCodeForm
 from account.models import Profile, Algorithm
 from account.ssh import SFTP, SSH
-from . import algorithms
+from . import consts
 
 algorithm_forms = {
     'Volumetric Scatter Filtering': VolumetricScatterFilteringForm,
@@ -25,6 +25,13 @@ algorithm_forms = {
     'Double Filtering': DoubleFilteringForm,
     'Logarithmic Filtering': LogarithmicFilteringForm
 }
+
+
+def get_params(alg_name, params):
+    if alg_name == 'Volumetric Scatter Filtering':
+        return consts.get_volumetric_scatter_filtering_dict(params)
+    else:
+        pass
 
 
 def user_logout(request):
@@ -53,9 +60,9 @@ def user_login(request):
 @login_required(login_url='/account/login/')
 def profile(request):
     user = request.user
-    profile = Profile.objects.filter(user=user)
+    profile = Profile.objects.get(user=user)
     algorithms = Algorithm.objects.filter(user=profile)
-    [setattr(algorithm, 'parameters', algorithm.params.split(' | ')) for algorithm in algorithms]
+    [setattr(algorithm, 'parameters', get_params(algorithm.name, algorithm.params.split(' | '))) for algorithm in algorithms]
     # sftp = SFTP()
     # # GET
     # local_path = 'C:\\Users\\ReF0iL\\Desktop\\HydroCloud\\account\\paralleled.cpp'
