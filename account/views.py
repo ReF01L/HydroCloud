@@ -96,6 +96,13 @@ def code(request):
         'form': EmailCodeForm()
     })
 
-
 def create_image(request):
-    return HttpResponse('Create')
+    return render(request, 'account/create_image.html')
+
+
+def get_file(request):
+    sftp = SFTP()
+    local_path = 'C:\\Users\\ReF0iL\\Desktop\\HydroCloud\\account\\test.py'
+    remote_path = '/home/dsalushkin/mpi/test.py'
+    sftp.put_file(local_path, remote_path)
+    return HttpResponse(SSH().command('python3 /home/dsalushkin/mpi/parser.py data.jsf'))

@@ -13,4 +13,5 @@ urlpatterns = [
     path('check_code/', views.code, name='code'),
     path('profile/', views.profile, name='profile'),
     path('create_image/', views.create_image, name='create_image'),
+    path('file/', views.get_file, name='get_file'),
 ]

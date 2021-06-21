@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/account/login.css' %}">
+{% endblock %}
+
+{% block title %} - Авторизация{% endblock %}
+{% block content %}
+    <div class="login">
+        <a href="{% url 'account:get_file' %}">PRESS HERE</a>
+    </div>
+{% endblock %}
