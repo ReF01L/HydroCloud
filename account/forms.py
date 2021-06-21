@@ -137,6 +137,34 @@ class ChooseAlgForm(forms.Form):
 
 
 class VolumetricScatterFilteringForm(forms.Form):
+    height = forms.IntegerField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'Кол-во строк входной матрицы',
+            'class': 'input'
+        }
+    ))
+    width = forms.IntegerField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'Ширина строки входной матрицы',
+            'class': 'input'
+        }
+    ))
+    start = forms.IntegerField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'Начальная строка вычисления сигмы',
+            'class': 'input'
+        }
+    ))
+    end = forms.IntegerField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'Конечная строка вычисления сигмы',
+            'class': 'input'
+        }
+    ))
+    data = forms.FileField(label='Load JSF file', label_suffix='')
+
+
+class MedianFilteringForm(forms.Form):
     param1 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
         attrs={
             'placeholder': 'param1',
@@ -149,9 +177,41 @@ class VolumetricScatterFilteringForm(forms.Form):
             'class': 'input'
         }
     ))
+    data = forms.FileField(label='Load JSF file', label_suffix='')
+
+
+class DoubleFilteringForm(forms.Form):
+    param1 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'param1',
+            'class': 'input'
+        }
+    ))
+    data = forms.FileField(label='Load JSF file', label_suffix='')
+
+
+class LogarithmicFilteringForm(forms.Form):
+    param1 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'param1',
+            'class': 'input'
+        }
+    ))
+    param2 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'param1',
+            'class': 'input'
+        }
+    ))
     param3 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
         attrs={
-            'placeholder': 'param3',
+            'placeholder': 'param1',
+            'class': 'input'
+        }
+    ))
+    param4 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'param1',
             'class': 'input'
         }
     ))

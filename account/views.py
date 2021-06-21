@@ -1,3 +1,4 @@
+import datetime
 import os
 import random
 
@@ -10,9 +11,18 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from HydroCloud import settings
-from account.forms import UserRegistrationForm, LoginForm, EmailCodeForm, ChooseAlgForm, VolumetricScatterFilteringForm
+from account.forms import UserRegistrationForm, LoginForm, EmailCodeForm, ChooseAlgForm, VolumetricScatterFilteringForm, \
+    MedianFilteringForm, DoubleFilteringForm, LogarithmicFilteringForm
 from account.models import Profile
 from account.ssh import SFTP, SSH
+from . import algorithms
+
+algorithm_forms = {
+    'Volumetric Scatter Filtering': VolumetricScatterFilteringForm,
+    'Median Filtering': MedianFilteringForm,
+    'Double Filtering': DoubleFilteringForm,
+    'Logarithmic Filtering': LogarithmicFilteringForm
+}
 
 
 def user_logout(request):
@@ -97,11 +107,37 @@ def code(request):
     })
 
 
+@login_required(login_url='/account/login/')
 def create_image(request):
-    return render(request, 'account/create_image.html', {
-        'choose_alg': ChooseAlgForm(),
-        'form': VolumetricScatterFilteringForm(),
-    })
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        if name is not None:
+            request.session['ALG'] = name
+            request.session.save()
+            return render(request, 'account/create_image.html', {
+                'choose_alg': ChooseAlgForm(request.POST),
+                'form': algorithm_forms[name]()
+            })
+        else:
+            form = algorithm_forms[request.session['ALG']](request.POST, request.FILES)
+            if form.is_valid():
+                cd = form.cleaned_data
+                file_name = f'{request.user.username}_{datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")}_data.txt'
+                local_path = os.path.join(f'{settings.BASE_DIR}\\media\\{file_name}')
+                # Save file
+                with open(local_path, 'wb+') as destination:
+                    for chunk in request.FILES['data']:
+                        destination.write(chunk)
+                # Send file to cluster
+                params = ' | '.join([f'{key} - {value}' for key, value in cd.items() if isinstance(value, str)])
+                sftp = SFTP()
+                remote_path = f'/home/dsalushkin/mpi/{file_name}'
+                sftp.put_file(local_path, remote_path)
+                return redirect('account:profile')
+    else:
+        return render(request, 'account/create_image.html', {
+            'choose_alg': ChooseAlgForm(),
+        })
 
 
 def get_file(request):
