@@ -1,12 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
 {% block extrahead %}
-    <link rel="stylesheet" href="{% static 'css/account/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/account/create_image.css' %}">
 {% endblock %}
 
-{% block title %} - Авторизация{% endblock %}
+{% block title %} - Создать изображение{% endblock %}
 {% block content %}
-    <div class="login">
-        <a href="{% url 'account:get_file' %}">PRESS HERE</a>
+    <div class="create">
+        <form action="." method="post" class="create_form">
+            {{ choose_alg.as_p }}
+            <input type="submit" class="btn" value="Выбрать">
+        </form>
+        <form action="." method="post" class="data_form">
+            {{ form.as_p }}
+            <input type="submit" class="btn">
+        </form>
     </div>
 {% endblock %}
