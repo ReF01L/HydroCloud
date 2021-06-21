@@ -5,7 +5,7 @@ delimiter = '|'
 
 
 class Algorithms(models.TextChoices):
-    VolumetricScatterFiltering = 'Фильтрации объёмного рассеяния', _('Volumetric Scatter Filtering')
-    MedianFiltering = 'Медианная фильтрация', _('Median Filtering')
-    DoubleFiltering = 'Двойная фильтрация', _('Double Filtering')
-    LogarithmicFiltering = 'Логарифмическая фильтрация', _('Logarithmic Filtering')
+    VolumetricScatterFiltering = 'Volumetric Scatter Filtering', _('Фильтрации объёмного рассеяния')
+    MedianFiltering = 'Median Filtering', _('Медианная фильтрация')
+    DoubleFiltering = 'Double Filtering', _('Двойная фильтрация')
+    LogarithmicFiltering = 'Logarithmic Filtering', _('Логарифмическая фильтрация')
