@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static '' %}">
+{% endblock %}
+{% block title %} - All Results{% endblock %}
+{% block content %}
+    {% for algorithm in algorithms %}
+        <div>
+            {{ algorithm.name }}, {{ algorithm.user }}
+            {% for parametr in algorithm.parameters %}
+                {{ parametr }}
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endblock %}

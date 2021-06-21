@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from HydroCloud import settings
 from account.forms import UserRegistrationForm, LoginForm, EmailCodeForm
-from account.models import Profile
+from account.models import Profile, Algorithm
 from account.ssh import SFTP, SSH
 
 
@@ -40,16 +40,21 @@ def user_login(request):
 
 @login_required(login_url='/account/login/')
 def profile(request):
-    sftp = SFTP()
-    # GET
-    local_path = 'C:\\Users\\ReF0iL\\Desktop\\HydroCloud\\account\\paralleled.cpp'
-    remote_path = '/home/dsalushkin/mpi/paralleled.cpp'
-    sftp.get_file(local_path, remote_path)
-    # PUT
-    local_path = 'C:\\Users\\ReF0iL\\Desktop\\HydroCloud\\account\\views.py'
-    remote_path = '/home/dsalushkin/mpi/views.py'
-    sftp.put_file(local_path, remote_path)
-    return render(request, 'account/profile.html')
+    user = request.user
+    profile = Profile.objects.filter(user=user)
+    algorithms = Algorithm.objects.filter(user=profile)
+    [setattr(algorithm, 'parameters', algorithm.params.split(' | ')) for algorithm in algorithms]
+    # sftp = SFTP()
+    # # GET
+    # local_path = 'C:\\Users\\ReF0iL\\Desktop\\HydroCloud\\account\\paralleled.cpp'
+    # remote_path = '/home/dsalushkin/mpi/paralleled.cpp'
+    # sftp.get_file(local_path, remote_path)
+    # # PUT
+    # local_path = 'C:\\Users\\ReF0iL\\Desktop\\HydroCloud\\account\\views.py'
+    # remote_path = '/home/dsalushkin/mpi/views.py'
+    # sftp.put_file(local_path, remote_path)
+    return render(request, 'account/profile.html', {'profile': profile,
+                                                    'algorithms': algorithms})
 
 
 def register(request):
@@ -96,13 +101,21 @@ def code(request):
         'form': EmailCodeForm()
     })
 
+
 def create_image(request):
     return render(request, 'account/create_image.html')
 
 
 def get_file(request):
-    sftp = SFTP()
-    local_path = 'C:\\Users\\ReF0iL\\Desktop\\HydroCloud\\account\\test.py'
-    remote_path = '/home/dsalushkin/mpi/test.py'
-    sftp.put_file(local_path, remote_path)
-    return HttpResponse(SSH().command('python3 /home/dsalushkin/mpi/parser.py data.jsf'))
+    # sftp = SFTP()
+    # local_path = 'C:\\Users\\ReF0iL\\Desktop\\HydroCloud\\account\\test.py'
+    # remote_path = '/home/dsalushkin/mpi/test.py'
+    # sftp.put_file(local_path, remote_path)
+    # return HttpResponse(SSH().command('python3 /home/dsalushkin/mpi/parser.py data.jsf'))
+    return HttpResponse('Get file')
+
+
+def get_all_results(request):
+    algorithms = Algorithm.objects.all()
+    [setattr(algorithm, 'parameters', algorithm.params.split(' | ')) for algorithm in algorithms]
+    return render(request, 'account/results_algorithm.html', {'algorithms': algorithms})

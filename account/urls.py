@@ -14,4 +14,5 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('create_image/', views.create_image, name='create_image'),
     path('file/', views.get_file, name='get_file'),
+    path('all_results/', views.get_all_results, name='all_results'),
 ]
