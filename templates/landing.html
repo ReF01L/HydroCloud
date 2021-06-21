@@ -11,7 +11,11 @@
                 Сервис для построения гидроакустических изображений
             </div>
             <div class="hero_btns">
-                <button class="hero_btns-btn btn" onclick="window.location='{% url 'account:register' %}'">Зарегистрироваться</button>
+                {% if user.is_authenticated %}
+                    <button class="hero_btns-btn btn" onclick="window.location='{% url 'account:profile' %}'">Открыть профиль</button>
+                {% else %}
+                    <button class="hero_btns-btn btn" onclick="window.location='{% url 'account:register' %}'">Зарегистрироваться</button>
+                {% endif %}
                 <button class="hero_btns-btn btn">Просмотреть результаты</button>
             </div>
         </div>

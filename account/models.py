@@ -16,3 +16,4 @@ class Algorithm(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Username')
     name = models.CharField(choices=algorithms.Algorithms.choices, max_length=50, verbose_name='Algorithm name')
     params = models.CharField(max_length=1000, verbose_name='Parameters')
+    slug = models.SlugField(unique=True)

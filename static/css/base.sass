@@ -17,6 +17,8 @@ header
   & .logo
     & img
       width: 255px
+    &:hover
+      cursor: pointer
   & .sign
     display: flex
     justify-content: flex-start
@@ -25,3 +27,25 @@ header
       cursor: pointer
     &-img
     &-text
+    &_btns
+      display: flex
+      justify-content: center
+      align-items: flex-end
+      flex-direction: column
+      &-btn
+        display: flex
+        justify-content: center
+        align-items: center
+        margin: 5px
+        width: 220px
+        height: 40px
+        background-color: $white
+        border: 2px solid $yellow
+        border-radius: 15px
+        text-decoration: none
+        font-size: 24px
+        @include regular
+        &:hover
+          background-color: $yellow
+
+

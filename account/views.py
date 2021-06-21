@@ -95,3 +95,7 @@ def code(request):
     return render(request, 'account/register_code.html', {
         'form': EmailCodeForm()
     })
+
+
+def create_image(request):
+    return HttpResponse('Create')
