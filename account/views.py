@@ -1,6 +1,7 @@
 import datetime
 import os
 import random
+from string import ascii_letters
 
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -134,6 +135,18 @@ def create_image(request):
                 with open(local_path, 'wb+') as destination:
                     for chunk in request.FILES['data']:
                         destination.write(chunk)
+                # Send file to cluster
+                params = ' | '.join([str(value) for key, value in cd.items() if key != 'data'])
+                sftp = SFTP()
+                remote_path = f'/home/dsalushkin/mpi/{file_name}'
+                sftp.put_file(local_path, remote_path)
+                # Save to db
+                Algorithm.objects.create(
+                    user=Profile.objects.get(user=request.user),
+                    name=request.session['ALG'],
+                    params=params,
+                    slug=''.join(random.choice(ascii_letters) for _ in range(10))
+                )
 
                 params = ' | '.join([f'{key} - {value}' for key, value in cd.items() if isinstance(value, str)])
                 jsf_path = os.path.join(local_path)
