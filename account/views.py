@@ -18,6 +18,7 @@ from account.forms import UserRegistrationForm, LoginForm, EmailCodeForm
 from account.models import Profile, Algorithm
 from account.ssh import SFTP, SSH
 from . import consts
+from .consts import start_algorithm
 
 algorithm_forms = {
     'Volumetric Scatter Filtering': VolumetricScatterFilteringForm,
@@ -63,15 +64,6 @@ def profile(request):
     profile = Profile.objects.get(user=user)
     algorithms = Algorithm.objects.filter(user=profile)
     [setattr(algorithm, 'parameters', get_params(algorithm.name, algorithm.params.split(' | '))) for algorithm in algorithms]
-    # sftp = SFTP()
-    # # GET
-    # local_path = 'C:\\Users\\ReF0iL\\Desktop\\HydroCloud\\account\\paralleled.cpp'
-    # remote_path = '/home/dsalushkin/mpi/paralleled.cpp'
-    # sftp.get_file(local_path, remote_path)
-    # # PUT
-    # local_path = 'C:\\Users\\ReF0iL\\Desktop\\HydroCloud\\account\\views.py'
-    # remote_path = '/home/dsalushkin/mpi/views.py'
-    # sftp.put_file(local_path, remote_path)
     return render(request, 'account/profile.html', {'profile': profile,
                                                     'algorithms': algorithms})
 
@@ -136,17 +128,21 @@ def create_image(request):
             form = algorithm_forms[request.session['ALG']](request.POST, request.FILES)
             if form.is_valid():
                 cd = form.cleaned_data
-                file_name = f'{request.user.username}_{datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")}_data.txt'
+                file_name = f'{request.user.username}_{datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")}_data.jsf'
                 local_path = os.path.join(f'{settings.BASE_DIR}\\media\\{file_name}')
                 # Save file
                 with open(local_path, 'wb+') as destination:
                     for chunk in request.FILES['data']:
                         destination.write(chunk)
-                # Send file to cluster
+
                 params = ' | '.join([f'{key} - {value}' for key, value in cd.items() if isinstance(value, str)])
-                sftp = SFTP()
-                remote_path = f'/home/dsalushkin/mpi/{file_name}'
-                sftp.put_file(local_path, remote_path)
+                jsf_path = os.path.join(local_path)
+                jsf_output_path = f'{os.path.split(local_path)[0]}_{file_name[:-4]}_temp.txt'
+                data_path = os.path.join('C:/Users/ReF0iL/Desktop/HydroCloud/data.txt')
+                img_path = os.path.join('C:/Users/ReF0iL/Desktop/HydroCloud/media/algs/test.png')
+
+                start_algorithm(jsf_path, jsf_output_path, data_path, img_path, params)
+
                 return redirect('account:profile')
     else:
         return render(request, 'account/create_image.html', {
@@ -154,16 +150,7 @@ def create_image(request):
         })
 
 
-def get_file(request):
-    # sftp = SFTP()
-    # local_path = 'C:\\Users\\ReF0iL\\Desktop\\HydroCloud\\account\\test.py'
-    # remote_path = '/home/dsalushkin/mpi/test.py'
-    # sftp.put_file(local_path, remote_path)
-    # return HttpResponse(SSH().command('python3 /home/dsalushkin/mpi/parser.py data.jsf'))
-    return HttpResponse("GET FILE")
-
-
 def get_all_results(request):
     algorithms = Algorithm.objects.all()
-    [setattr(algorithm, 'parameters', algorithm.params.split(' | ')) for algorithm in algorithms]
+    [setattr(algorithm, 'parameters', get_params(algorithm.name, algorithm.params.split(' | '))) for algorithm in algorithms]
     return render(request, 'account/results_algorithm.html', {'algorithms': algorithms})

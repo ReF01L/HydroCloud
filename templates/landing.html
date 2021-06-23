@@ -16,7 +16,7 @@
                 {% else %}
                     <button class="hero_btns-btn btn" onclick="window.location='{% url 'account:register' %}'">Зарегистрироваться</button>
                 {% endif %}
-                <button class="hero_btns-btn btn">Просмотреть результаты</button>
+                <button class="hero_btns-btn btn" onclick="window.location='{% url 'account:all_results' %}'">Просмотреть результаты</button>
             </div>
         </div>
         <div class="algs">

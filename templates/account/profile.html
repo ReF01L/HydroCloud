@@ -2,6 +2,20 @@
 {% load static %}
 {% block extrahead %}
     <link rel="stylesheet" href="{% static 'css/account/profile.css' %}">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let images = Array.from(document.querySelectorAll('.info_cards_card-img'))
+            document.querySelectorAll('.info_cards_card').forEach((item, i) => {
+                item.addEventListener('click', (event) => {
+                    let current_style = images[i].style.display
+                    if (current_style === '')
+                        images[i].style.display = 'block'
+                    else
+                        images[i].style.display = ''
+                })
+            })
+        })
+    </script>
 {% endblock %}
 {% block title %} - Profile{% endblock %}
 {% block content %}
@@ -38,6 +52,7 @@
                                 </div>
                             {% endfor %}
                         </div>
+                        <img class="info_cards_card-img" src="{{ algorithm.image.url }}" alt="">
                     </div>
                 {% endfor %}
             </div>

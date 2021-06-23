@@ -16,6 +16,7 @@ class Algorithm(models.Model):
     user = models.ForeignKey(to=Profile, on_delete=models.CASCADE, verbose_name='Username')
     name = models.CharField(choices=consts.Algorithms.choices, max_length=50, verbose_name='Algorithm name')
     params = models.CharField(max_length=1000, verbose_name='Parameters')
+    image = models.ImageField(upload_to='algs', default='')
     slug = models.SlugField(unique=True)
 
     def __str__(self):
