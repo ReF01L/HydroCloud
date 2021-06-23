@@ -10,4 +10,4 @@ class ProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Algorithm)
 class AlgorithmAdmin(admin.ModelAdmin):
-    fields = ('user', 'name', 'params', 'slug', 'image')
+    fields = ('user', 'name', 'params', 'slug', 'image', 'file', 'status')

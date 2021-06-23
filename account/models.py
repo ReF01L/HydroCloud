@@ -18,6 +18,8 @@ class Algorithm(models.Model):
     params = models.CharField(max_length=1000, verbose_name='Parameters')
     image = models.ImageField(upload_to='algs', default='')
     slug = models.SlugField(unique=True)
+    status = models.CharField(choices=consts.Statuses.choices, max_length=50, verbose_name='Status', default=consts.Statuses.choices[0])
+    file = models.FileField(upload_to='jsf', default=None)
 
     def __str__(self):
         return self.name

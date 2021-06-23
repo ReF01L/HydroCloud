@@ -20,6 +20,8 @@ from account.models import Profile, Algorithm
 from account.ssh import SFTP, SSH
 from . import consts
 from .consts import start_algorithm
+from PIL import Image
+from django.core.files.base import ContentFile
 
 algorithm_forms = {
     'Volumetric Scatter Filtering': VolumetricScatterFilteringForm,
@@ -130,31 +132,31 @@ def create_image(request):
             if form.is_valid():
                 cd = form.cleaned_data
                 file_name = f'{request.user.username}_{datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")}_data.jsf'
-                local_path = os.path.join(f'{settings.BASE_DIR}\\media\\{file_name}')
+                img_name = f'{request.user.username}_{datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")}_img.png'
+                local_path = os.path.join(f'{settings.BASE_DIR}\\media\\jsf\\{file_name}')
                 # Save file
                 with open(local_path, 'wb+') as destination:
                     for chunk in request.FILES['data']:
                         destination.write(chunk)
-                # Send file to cluster
-                params = ' | '.join([str(value) for key, value in cd.items() if key != 'data'])
-                sftp = SFTP()
-                remote_path = f'/home/dsalushkin/mpi/{file_name}'
-                sftp.put_file(local_path, remote_path)
+
+                params = ' | '.join([str(value) for key, value in cd.items() if isinstance(value, int)])
+
+                jsf_path = local_path
+                jsf_output_path = os.path.join(os.path.split(local_path)[0], f'{file_name[:-4]}.txt')
+                data_path = os.path.join(f'{settings.BASE_DIR}\\data.txt')
+                img_path = os.path.join(f'{settings.BASE_DIR}\\media\\algs\\{img_name}')
+
+                start_algorithm(jsf_path, jsf_output_path, data_path, img_path, params)
                 # Save to db
                 Algorithm.objects.create(
                     user=Profile.objects.get(user=request.user),
                     name=request.session['ALG'],
                     params=params,
-                    slug=''.join(random.choice(ascii_letters) for _ in range(10))
+                    slug=''.join(random.choice(ascii_letters) for _ in range(10)),
+                    image=img_path,
+                    file=request.FILES['data']
                 )
-
-                params = ' | '.join([f'{key} - {value}' for key, value in cd.items() if isinstance(value, str)])
-                jsf_path = os.path.join(local_path)
-                jsf_output_path = f'{os.path.split(local_path)[0]}_{file_name[:-4]}_temp.txt'
-                data_path = os.path.join('C:/Users/ReF0iL/Desktop/HydroCloud/data.txt')
-                img_path = os.path.join('C:/Users/ReF0iL/Desktop/HydroCloud/media/algs/test.png')
-
-                start_algorithm(jsf_path, jsf_output_path, data_path, img_path, params)
+                os.remove(jsf_path)
 
                 return redirect('account:profile')
     else:
