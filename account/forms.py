@@ -137,27 +137,9 @@ class ChooseAlgForm(forms.Form):
 
 
 class VolumetricScatterFilteringForm(forms.Form):
-    height = forms.IntegerField(label='', label_suffix='', widget=forms.TextInput(
+    mu = forms.IntegerField(label='', label_suffix='', widget=forms.TextInput(
         attrs={
-            'placeholder': 'Кол-во строк входной матрицы',
-            'class': 'input'
-        }
-    ))
-    width = forms.IntegerField(label='', label_suffix='', widget=forms.TextInput(
-        attrs={
-            'placeholder': 'Ширина строки входной матрицы',
-            'class': 'input'
-        }
-    ))
-    start = forms.IntegerField(label='', label_suffix='', widget=forms.TextInput(
-        attrs={
-            'placeholder': 'Начальная строка вычисления сигмы',
-            'class': 'input'
-        }
-    ))
-    end = forms.IntegerField(label='', label_suffix='', widget=forms.TextInput(
-        attrs={
-            'placeholder': 'Конечная строка вычисления сигмы',
+            'placeholder': 'Коэффициент μ',
             'class': 'input'
         }
     ))

@@ -17,11 +17,9 @@ from account.forms import UserRegistrationForm, LoginForm, EmailCodeForm, Choose
 from account.models import Profile
 from account.forms import UserRegistrationForm, LoginForm, EmailCodeForm
 from account.models import Profile, Algorithm
-from account.ssh import SFTP, SSH
 from . import consts
-from .consts import start_algorithm
-from PIL import Image
-from django.core.files.base import ContentFile
+from .tasks import start_algorithm
+
 
 algorithm_forms = {
     'Volumetric Scatter Filtering': VolumetricScatterFilteringForm,
@@ -146,17 +144,17 @@ def create_image(request):
                 data_path = os.path.join(f'{settings.BASE_DIR}\\data.txt')
                 img_path = os.path.join(f'{settings.BASE_DIR}\\media\\algs\\{img_name}')
 
-                start_algorithm(jsf_path, jsf_output_path, data_path, img_path, params)
+                slug = ''.join(random.choice(ascii_letters) for _ in range(10))
+                start_algorithm.delay(jsf_path, jsf_output_path, data_path, img_path, params, slug)
                 # Save to db
                 Algorithm.objects.create(
                     user=Profile.objects.get(user=request.user),
                     name=request.session['ALG'],
                     params=params,
-                    slug=''.join(random.choice(ascii_letters) for _ in range(10)),
-                    image=img_path,
-                    file=request.FILES['data']
+                    slug=slug,
+                    file=request.FILES['data'],
+                    status=consts.Statuses.InProcess
                 )
-                os.remove(jsf_path)
 
                 return redirect('account:profile')
     else:

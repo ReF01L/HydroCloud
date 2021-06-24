@@ -7,6 +7,7 @@
   justify-content: center
   align-items: center
   flex-direction: column
+
   & .hero
     display: flex
     justify-content: center
@@ -15,6 +16,7 @@
     border: 2px solid $yellow
     border-radius: 25px
     padding: 10px 50px 25px
+
     & .fields
       display: flex
       flex-direction: column
@@ -39,34 +41,38 @@
         &-value
           text-transform: uppercase
           font-size: 18px
+
   & .info
     display: flex
     justify-content: space-between
     align-items: center
     margin-top: 25px
+
     &-stat
       font-size: 24px
+
     &_cards
       display: flex
       flex-direction: column
       align-self: flex-start
       justify-content: flex-start
+
       &_card
-        position: relative
+        //display: flex
+        justify-content: space-between
+        align-items: center
         width: 1140px
         margin-bottom: 30px
         box-shadow: 2px 2px 4px 2px rgba(63, 61, 86, 0.5)
+        position: relative
         background: $white
-        display: flex
-        flex-direction: column
-        align-items: center
-        justify-content: flex-start
         padding: 0 95px
         -webkit-transition: 0.2s
         -moz-transition: 0.2s
         -ms-transition: 0.2s
         -o-transition: 0.2s
         transition: 0.2s
+
         &:hover
           -webkit-transform: scale(1.1)
           -moz-transform: scale(1.1)
@@ -74,6 +80,13 @@
           -o-transform: scale(1.1)
           transform: scale(1.1)
           cursor: pointer
+
+        & .main
+          display: flex
+          flex-direction: column
+          align-items: center
+          justify-content: flex-start
+
         &-title
           margin: 25px auto 10px
           color: $dark
@@ -82,6 +95,10 @@
           border-bottom: 1px solid $dark
           width: 100%
           text-align: center
+          & h5
+            color: $red
+            @include light
+
         &_params
           margin-top: 25px
           color: $dark
@@ -92,9 +109,11 @@
           display: flex
           justify-content: flex-start
           align-items: center
+
           &-param
             margin: 10px 15px
+
         &-img
           width: 40%
           display: none
-          margin-bottom: 10px
+          margin: 10px auto

@@ -27,7 +27,11 @@
             {% for algorithm in algorithms %}
                 <div class="info_cards_card">
                     <div class="main">
-                        <div class="info_cards_card-title">{{ algorithm.name }}</div>
+                        <div class="info_cards_card-title">
+                            {{ algorithm.name }}
+                            {% if algorithm.status == 'In process' %}
+                                <h5>{{ algorithm.status }}</h5>
+                            {% endif %}</div>
                         <div class="info_cards_card-name">{{ algorithm.user }}</div>
                         <div class="info_cards_card_params">
                             {% for name, value in algorithm.parameters.items %}
@@ -37,7 +41,9 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <img class="info_cards_card-img" src="{{ algorithm.image.url }}" alt="">
+                    {% if algorithm.status == 'Complete' %}
+                        <img class="info_cards_card-img" src="{{ algorithm.image.url }}" alt="">
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>
