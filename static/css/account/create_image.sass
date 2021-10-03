@@ -1,0 +1,60 @@
+@import '../interface'
+
+.create
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  margin-top: 100px
+
+  &_form
+    margin-top: 30px
+    display: flex
+    align-items: flex-start
+    justify-content: flex-start
+    width: 100%
+
+    & p
+      position: relative
+      height: 60px
+      margin-bottom: 20px
+      display: flex
+      width: 80%
+      & select
+        width: 100%
+        -webkit-appearance: none
+        -moz-appearance: none
+        appearance: none
+        -webkit-transition: 0.3s
+        -moz-transition: 0.3s
+        -ms-transition: 0.3s
+        -o-transition: 0.3s
+        transition: 0.3s
+        color: $dark
+        @include regular
+
+        &:hover
+          cursor: pointer
+    & input
+      border: 1px solid $yellow
+      border-radius: 15px
+      margin-left: 15px
+      -webkit-transition: 0.2s
+      -moz-transition: 0.2s
+      -ms-transition: 0.2s
+      -o-transition: 0.2s
+      transition: 0.2s
+      &:hover
+        background-color: $yellow
+
+.data_form
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  justify-content: flex-start
+  width: 100%
+  & p
+    display: flex
+    flex-direction: column
+    & label
+      margin-bottom: 10px

@@ -1,10 +1,11 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from account.models import Profile
+from account import consts
+from account.models import Profile, Algorithm
 
 
-class LoginForm(forms.ModelForm):
+class LoginForm(forms.Form):
     username = forms.CharField(label='Username', label_suffix='', widget=forms.TextInput(
         attrs={
             'placeholder': 'Username',
@@ -20,7 +21,7 @@ class LoginForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'password')
+        fields = ()
 
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
@@ -121,3 +122,79 @@ class UserRegistrationForm(forms.ModelForm):
             })
             raise forms.ValidationError('')
         return username
+
+
+class ChooseAlgForm(forms.Form):
+    name = forms.ChoiceField(label='', label_suffix='', choices=consts.Algorithms.choices, widget=forms.Select(
+        attrs={
+            'class': 'input'
+        }
+    ))
+
+    class Meta:
+        model = Algorithm
+        fields = ('name',)
+
+
+class VolumetricScatterFilteringForm(forms.Form):
+    mu = forms.IntegerField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'Коэффициент μ',
+            'class': 'input'
+        }
+    ))
+    data = forms.FileField(label='Load JSF file', label_suffix='')
+
+
+class MedianFilteringForm(forms.Form):
+    param1 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'param1',
+            'class': 'input'
+        }
+    ))
+    param2 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'param2',
+            'class': 'input'
+        }
+    ))
+    data = forms.FileField(label='Load JSF file', label_suffix='')
+
+
+class DoubleFilteringForm(forms.Form):
+    param1 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'param1',
+            'class': 'input'
+        }
+    ))
+    data = forms.FileField(label='Load JSF file', label_suffix='')
+
+
+class LogarithmicFilteringForm(forms.Form):
+    param1 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'param1',
+            'class': 'input'
+        }
+    ))
+    param2 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'param1',
+            'class': 'input'
+        }
+    ))
+    param3 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'param1',
+            'class': 'input'
+        }
+    ))
+    param4 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
+        attrs={
+            'placeholder': 'param1',
+            'class': 'input'
+        }
+    ))
+    data = forms.FileField(label='Load JSF file', label_suffix='')

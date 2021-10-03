@@ -1,17 +1,123 @@
-/* Error: Undefined variable.
- *    ,
- * 60 |       border: 2px dashed $light
- *    |                          ^^^^^^
- *    '
- *   profile.sass 60:26  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a    \2577 \a 60 \2502        border: 2px dashed $light\a    \2502                           ^^^^^^\a    \2575 \a   profile.sass 60:26  root stylesheet";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+.container {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
+.container .hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  border: 2px solid #FAD150;
+  border-radius: 25px;
+  padding: 10px 50px 25px;
+}
+.container .hero .fields {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.container .hero .fields .field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+  width: 100%;
+  margin-top: 50px;
+  padding: 10px;
+}
+.container .hero .fields .field-key {
+  text-transform: capitalize;
+  font-size: 24px;
+  font-weight: 600;
+}
+.container .hero .fields .field-value {
+  text-transform: uppercase;
+  font-size: 18px;
+}
+.container .info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+}
+.container .info-stat {
+  font-size: 24px;
+}
+.container .info_cards {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  justify-content: flex-start;
+}
+.container .info_cards_card {
+  justify-content: space-between;
+  align-items: center;
+  width: 1140px;
+  margin-bottom: 30px;
+  box-shadow: 2px 2px 4px 2px rgba(63, 61, 86, 0.5);
+  position: relative;
+  background: #F1F1F1;
+  padding: 0 95px;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+}
+.container .info_cards_card:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.container .info_cards_card .main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.container .info_cards_card-title {
+  margin: 25px auto 10px;
+  color: #3F3D56;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  border-bottom: 1px solid #3F3D56;
+  width: 100%;
+  text-align: center;
+}
+.container .info_cards_card-title h5 {
+  color: #FF0000;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
+.container .info_cards_card_params {
+  margin-top: 25px;
+  color: #3F3D56;
+  font-size: 18px;
+  text-align: left;
+  margin-bottom: 30px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.container .info_cards_card_params-param {
+  margin: 10px 15px;
+}
+.container .info_cards_card-img {
+  width: 40%;
+  display: none;
+  margin: 10px auto;
+}
+
+/*# sourceMappingURL=profile.css.map */

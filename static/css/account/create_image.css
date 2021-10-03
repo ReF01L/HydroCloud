@@ -115,63 +115,71 @@
   text-align: left;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 400;
-  color: #3F3D56;
-}
-
-body {
-  max-width: 1140px;
-  margin: auto;
-  background-color: #F1F1F1;
-}
-
-header {
+.create {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-header .logo img {
-  width: 255px;
-}
-header .logo:hover {
-  cursor: pointer;
-}
-header .sign {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-header .sign:hover {
-  cursor: pointer;
-}
-header .sign_btns {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
   flex-direction: column;
-}
-header .sign_btns-btn {
-  display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5px;
-  width: 220px;
-  height: 40px;
-  background-color: #F1F1F1;
-  border: 2px solid #FAD150;
-  border-radius: 15px;
-  text-decoration: none;
-  font-size: 24px;
+  margin-top: 100px;
+}
+.create_form {
+  margin-top: 30px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+.create_form p {
+  position: relative;
+  height: 60px;
+  margin-bottom: 20px;
+  display: flex;
+  width: 80%;
+}
+.create_form p select {
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  color: #3F3D56;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
 }
-header .sign_btns-btn:hover {
+.create_form p select:hover {
+  cursor: pointer;
+}
+.create_form input {
+  border: 1px solid #FAD150;
+  border-radius: 15px;
+  margin-left: 15px;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+}
+.create_form input:hover {
   background-color: #FAD150;
 }
 
-/*# sourceMappingURL=base.css.map */
+.data_form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+.data_form p {
+  display: flex;
+  flex-direction: column;
+}
+.data_form p label {
+  margin-bottom: 10px;
+}
+
+/*# sourceMappingURL=create_image.css.map */
