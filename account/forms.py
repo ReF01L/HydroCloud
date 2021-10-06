@@ -147,15 +147,9 @@ class VolumetricScatterFilteringForm(forms.Form):
 
 
 class MedianFilteringForm(forms.Form):
-    param1 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
+    window_size = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
         attrs={
-            'placeholder': 'param1',
-            'class': 'input'
-        }
-    ))
-    param2 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
-        attrs={
-            'placeholder': 'param2',
+            'placeholder': 'Размер окна',
             'class': 'input'
         }
     ))
@@ -163,9 +157,9 @@ class MedianFilteringForm(forms.Form):
 
 
 class DoubleFilteringForm(forms.Form):
-    param1 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
+    mu = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
         attrs={
-            'placeholder': 'param1',
+            'placeholder': 'Коэффициент μ',
             'class': 'input'
         }
     ))
@@ -173,27 +167,9 @@ class DoubleFilteringForm(forms.Form):
 
 
 class LogarithmicFilteringForm(forms.Form):
-    param1 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
+    a = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
         attrs={
-            'placeholder': 'param1',
-            'class': 'input'
-        }
-    ))
-    param2 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
-        attrs={
-            'placeholder': 'param1',
-            'class': 'input'
-        }
-    ))
-    param3 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
-        attrs={
-            'placeholder': 'param1',
-            'class': 'input'
-        }
-    ))
-    param4 = forms.CharField(label='', label_suffix='', widget=forms.TextInput(
-        attrs={
-            'placeholder': 'param1',
+            'placeholder': 'Основание логарифма - \'a\'',
             'class': 'input'
         }
     ))

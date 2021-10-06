@@ -9,29 +9,33 @@ from account.ssh import SFTP, SSH
 
 
 @shared_task
-def start_algorithm(jsf_input_path: str, jsf_output_path: str, data_path: str, image_path: str, params: str, slug: str):
+def start_algorithm(jsf_input_path: str, jsf_output_path: str, data_path: str, image_path: str, params: str, slug: str, alg: str):
+    static_dir_path = os.path.join(settings.BASE_DIR, 'static', 'Parser.exe')
+    algs_dir_path = '/home/dsalushkin/mpi/'
     print('Start algorithm')
-    os.system(f'C:\\Users\\ReF0iL\\Desktop\\HydroCloud\\static\\Parser.exe {jsf_input_path} {jsf_output_path}')  # Run parser
+    os.system(f'{static_dir_path} {jsf_input_path} {jsf_output_path}')  # Run parser
     print('Parsed..')
 
     sftp = SFTP()
-    # PUT file
+    # PUT file with params
     file_name = os.path.split(jsf_output_path)[1]
-    remote_path = f'/home/dsalushkin/mpi/{file_name}'
+    remote_path = os.path.join(algs_dir_path, file_name)
     sftp.put_file(jsf_output_path, remote_path)
 
     params_path = os.path.join(settings.BASE_DIR, 'media', 'params.txt')
     with open(params_path, 'r') as f:
         f.write(params)
-    remote_path = '/home/dsalushkin/mpi/params.txt'
+    remote_path = os.path.join(algs_dir_path, 'params.txt')
     sftp.put_file(params_path, remote_path)
 
-    print('Start algorithm')
+    command = consts.Algorithms(alg).name
+    print(f'Start algorithm - {command}\\{alg}')
     ssh = SSH()
-    ssh.command(f'mpiexec -n 1 ./mpi/p')
+    ssh.command(f'mpiexec -n 8 ./mpi/{command}')
     print('End algorithm')
+
     # GET file
-    remote_path = '/home/dsalushkin/mpi/output1.txt'
+    remote_path = os.path.join(algs_dir_path, 'output1.txt')
     sftp.get_file(data_path, remote_path)
     print('Read')
 
@@ -49,15 +53,17 @@ def start_algorithm(jsf_input_path: str, jsf_output_path: str, data_path: str, i
     print('Start generate image')
     with open(data_path, 'r') as file:
         data = tuple(file.readlines())
-        img = Image.new('L', (7384, 8680))
+        rows = len(data[0].split())
+        cols = len(data)
+        img = Image.new('L', (cols, rows))
         i = j = 0
         stop = False
         for line in data:
             for pixel in line.split():
                 img.putpixel((i, j), _round(int(float(pixel))))
                 j += 1
-                if j == 8680:
-                    if i == 7384:
+                if j == rows:
+                    if i == cols:
                         stop = True
                         break
                     j = 0

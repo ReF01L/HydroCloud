@@ -13,7 +13,9 @@ class SSH:
             cls.instance = super(SSH, cls).__new__(cls)
             cls.client = paramiko.SSHClient()
             cls.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            cls.client.connect(username=settings.config['SSH']['LOGIN'], password='ЙФЯ?ЦУЧ"!Лфеэлф"№;', hostname='jupiter.febras.net',
+            cls.client.connect(username=settings.config['SSH']['LOGIN'],
+                               password='ЙФЯ?ЦУЧ"!Лфеэлф"№;',
+                               hostname='jupiter.febras.net',
                                port=2020)
         return cls.instance
 
